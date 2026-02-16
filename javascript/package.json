@@ -1,0 +1,17 @@
+{
+  "name": "algorithm-javascript",
+  "version": "1.0.0",
+  "private": true,
+  "description": "JavaScript algorithm practice project with Jest",
+  "scripts": {
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

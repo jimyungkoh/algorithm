@@ -42,4 +42,8 @@ bin/
 ### Mac OS ###
 .DS_Store
 
+### JavaScript ###
+node_modules/
+coverage/
+
 **/.serena

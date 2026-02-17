@@ -15,6 +15,22 @@ npm install
 npm test
 ```
 
+## Run lint
+
+```bash
+npm run lint
+```
+
+```bash
+npm run lint:fix
+```
+
+## VS Code on-save lint fix
+
+Open the repository root (`algorithm`) in VS Code so `.vscode/settings.json` is applied.
+Install the ESLint extension (`dbaeumer.vscode-eslint`) if not installed.
+Then save a `javascript/**/*.js` file to apply auto-fixes.
+
 ## Practice flow
 
 1. Implement each TODO function in `src/sorting/*.js`.

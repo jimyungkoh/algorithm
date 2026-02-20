@@ -17,7 +17,27 @@
  * 4. 방문 순서를 담은 배열을 반환한다.
  */
 function bfs(graph, start) {
-  throw new Error("TODO: implement");
+  if (!Array.isArray(graph) || start < 0 || start >= graph.length)
+    throw new Error("지원하지 않는 입력입니다.");
+
+  const visitedVertices = new Array(graph.length).fill(false);
+  const [ret, queue] = [[],[start]];
+  let queueHead = 0;
+  ret.push(start);
+  visitedVertices[start] = true;
+
+  while (queueHead < queue.length){
+    const vertex = queue[queueHead++];
+
+    for (const v of graph[vertex]){
+      if (v < 0 || v >= graph.length || visitedVertices[v]) continue;
+      queue.push(v);
+      ret.push(v);
+      visitedVertices[v] = true;
+    }
+  }
+
+  return ret;
 }
 
 module.exports = { bfs };

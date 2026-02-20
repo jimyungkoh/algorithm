@@ -1,5 +1,10 @@
 package topics.graph;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 /**
  * 너비 우선 탐색(BFS) 템플릿.
  *
@@ -15,6 +20,30 @@ package topics.graph;
  */
 public class BFS {
     public int[] bfs(int[][] graph, int start) {
-        throw new UnsupportedOperationException("TODO: implement");
+        if(graph == null || start<0|| start >= graph.length )
+            throw new IllegalArgumentException("지원하지 않는 입력입니다.");
+
+        Queue<Integer> vertices=  new LinkedList<>(List.of(start));
+        boolean[] visitedVertices = new boolean[graph.length];
+        ArrayList<Integer> ret = new ArrayList<>();
+
+        while(!vertices.isEmpty()){
+            int vertex = vertices.poll();
+            if(visitedVertices[vertex]) continue;
+            ret.add(vertex);
+            visitedVertices[vertex] = true;
+
+            for(int v : graph[vertex]){
+              if(v<0|| v >= graph.length) continue;
+              vertices.add(v);
+            }
+        }
+
+        int[] result = new int[ret.size()];
+        
+        for(int i = 0 ; i < ret.size(); i++)
+            result[i] = ret.get(i);
+
+        return result;
     }
 }

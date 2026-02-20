@@ -17,7 +17,22 @@
  * 4. 방문 순서를 담은 배열을 반환한다.
  */
 function dfs(graph, start) {
-  throw new Error("TODO: implement");
+  if (!Array.isArray(graph) || start >= graph.length || start < 0) throw Error("지원하지 않는 입력입니다.");
+  const ret = [];
+  const visited = Array(graph.length).fill(false);
+  dfs_core({ graph, currentVertex:start, ret, visited });
+  return ret;
+}
+
+function dfs_core({ graph, currentVertex, ret, visited }){
+  if (!Array.isArray(graph) || visited[currentVertex]) return;
+  visited[currentVertex] = true;
+  ret.push(currentVertex);
+
+  for (const v of graph[currentVertex]){
+    if (v < 0 || v >= graph.length) continue;
+    dfs_core({ graph, currentVertex:v, ret, visited });
+  }
 }
 
 module.exports = { dfs };

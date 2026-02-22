@@ -27,11 +27,13 @@ function bellmanFord(vertexCount, edges, start) {
   dist[start] = 0;
 
   for (let round = 1; round < vertexCount; round++){
+    let relaxed = false;
     for (let [from, to, weight] of edges){
       if (dist[from] === INF || dist[to] <= dist[from] + weight) continue;
 
-      dist[to] = dist[from] + weight;
+      [dist[to], relaxed] = [dist[from] + weight, true];
     }
+    if (!relaxed) break;
   }
 
   for (let [from, to, weight] of edges){

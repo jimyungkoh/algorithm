@@ -28,15 +28,19 @@ public class BellmanFord {
         dist[start] = 0;
 
         for(int v = 1; v < vertexCount; v++){
+          boolean relaxed = false;
             for(int[] e: edges) {
                 int from  = e[0];
                 int to  = e[1];
                 int weight  = e[2];
 
-                if(dist[from] == INF) continue;
+                if(dist[from] == INF || dist[to] <= dist[from]+weight) continue;
 
-                if(dist[to] > dist[from]+weight) dist[to] = dist[from] + weight;
+                dist[to] = dist[from] + weight;
+                relaxed = true;
             }
+
+            if(!relaxed) break;
         }
 
         for(int[] e: edges) {

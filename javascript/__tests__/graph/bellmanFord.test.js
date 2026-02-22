@@ -16,17 +16,18 @@ describe("bellmanFord", () => {
       expect(() => bellmanFord(3, [[0, 1, 1]], 5)).toThrow();
     });
 
+
     test("음수 간선을 포함해도 최단거리를 정확히 계산한다", () => {
       const result = bellmanFord(
-          4,
-          [
-            [0, 1, 4],
-            [0, 2, 5],
-            [2, 1, -2],
-            [1, 3, 2],
-            [2, 3, 3]
-          ],
-          0
+        4,
+        [
+          [0, 1, 4],
+          [0, 2, 5],
+          [2, 1, -2],
+          [1, 3, 2],
+          [2, 3, 3],
+        ],
+        0,
       );
 
       expect(result).toEqual([0, 3, 5, 5]);
@@ -34,13 +35,13 @@ describe("bellmanFord", () => {
 
     test("도달 불가능한 정점은 Infinity를 반환한다", () => {
       const result = bellmanFord(
-          6,
-          [
-            [0, 1, 7],
-            [1, 2, 2],
-            [2, 3, 4]
-          ],
-          0
+        6,
+        [
+          [0, 1, 7],
+          [1, 2, 2],
+          [2, 3, 4],
+        ],
+        0,
       );
 
       expect(result).toEqual([0, 7, 9, 13, INF, INF]);
@@ -53,10 +54,10 @@ describe("bellmanFord", () => {
           [
             [0, 1, 1],
             [1, 2, -1],
-            [2, 1, -1]
+            [2, 1, -1],
           ],
-          0
-        )
+          0,
+        ),
       ).toThrow();
     });
 

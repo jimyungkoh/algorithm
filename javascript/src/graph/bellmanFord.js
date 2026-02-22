@@ -19,7 +19,28 @@
  * 3. 추가 순회에서 완화가 가능하면 음수 사이클 도달을 감지해 예외를 던진다.
  */
 function bellmanFord(vertexCount, edges, start) {
-  throw new Error("TODO: implement");
+  if (!Array.isArray(edges) || start >= vertexCount || start < 0 || vertexCount === 0)
+    throw new Error("지원하지 않는 입력입니다.");
+
+  const INF = Number.POSITIVE_INFINITY;
+  const dist = new Array(vertexCount).fill(INF);
+  dist[start] = 0;
+
+  for (let round = 1; round < vertexCount; round++){
+    for (let [from, to, weight] of edges){
+      if (dist[from] === INF || dist[to] <= dist[from] + weight) continue;
+
+      dist[to] = dist[from] + weight;
+    }
+  }
+
+  for (let [from, to, weight] of edges){
+    if (dist[from] === INF || dist[to] <= dist[from] + weight) continue;
+
+    throw new Error("음수 사이클 발생으로 예외 처리합니다.");
+  }
+
+  return dist;
 }
 
 module.exports = { bellmanFord };
